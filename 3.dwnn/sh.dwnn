@@ -1,0 +1,21 @@
+#!/bin/bash
+#SBATCH -J dwnn.total_fit 
+#SBATCH -p htc 
+#SBATCH -N 1 -n 1 -c 36
+#SBATCH --array=0-5
+#SBATCH --mem=200GB
+#SBATCH --hint=nomultithread  # no hyperthreading
+#SBATCH --exclude=b150,k001
+#SBATCH --exclusive
+
+mkdir -p cpu_mod$SLURM_ARRAY_TASK_ID
+
+# Anaconda3
+export PATH="/users/zilins/software/anaconda3/condabin:$PATH"
+source activate tensorflow_cpu 
+
+# oneDNN library settings.
+export KMP_BLOCKTIME=0                              # allows threads to transition quickly.
+export KMP_AFFINITY=granularity=fine,compact,0,0    # bind threads to cores.
+
+python dwnn.py $SLURM_ARRAY_TASK_ID cpu_mod$SLURM_ARRAY_TASK_ID
