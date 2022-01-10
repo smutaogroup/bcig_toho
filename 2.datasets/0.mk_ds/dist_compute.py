@@ -1,5 +1,5 @@
 # Defs for extracting features.
-# Zilin Song, 25 AUG 2021
+# Zilin Song, 20 AUG 2021
 # 
 
 from MDAnalysis.analysis.hydrogenbonds.hbond_analysis import HydrogenBondAnalysis as HBA
@@ -84,6 +84,54 @@ def dist_rx(mda_universe, repid, pathname, ):
         exit()
 
     _rxcsel = [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, ] if pathname == 'r1ae' else [5, 6, 7, 8, 9, 10, 11, ]
+    _distmat = []
+    _distlbl = []
+    for i in _rxcsel:
+        group0 = mda_universe.select_atoms(_selbase + atom_i_sel[i])
+        group1 = mda_universe.select_atoms(_selbase + atom_j_sel[i])
+
+        if group0.n_atoms == 1 and group1.n_atoms == 1:
+            atom_i = group0.atoms[0]
+            atom_j = group1.atoms[0]
+            d = interatomic_dist(atom_i, atom_j, )
+            l =	'{0}.{1}.{2}:{3}.{4}.{5}'.format(
+                atom_i.residue.resname, atom_i.residue.resid, atom_i.name,
+                atom_j.residue.resname, atom_j.residue.resid, atom_j.name,
+            )
+            _distmat.append(d)
+            _distlbl.append(l)
+        else: 
+            raise ValueError('Pairwise selection retrived more than 1 atoms in each group: Check dist_compute.dist_rx()\n')
+            
+    return _distmat, _distlbl
+
+def dist_rx_toho_cex_mech_valid(mda_universe, repid, pathname, ):
+    '''Used for verifying the mechanism of toho/cex: R2-AE. 
+    Reply to reviewer 1.
+    '''
+    _selbase = 'segid Q{0} and'.format(str(repid))
+    atom_i_sel = [
+        ' (resid  69 and resname  SER and name HG1)',	# d1
+        ' (resid  69 and resname  SER and name HG1)',	# d1
+        ' (resid 433 and resname TIP3 and name  H2)',	# d2
+        ' (resid 433 and resname TIP3 and name  H2)',	# d3
+        ' (resid 433 and resname TIP3 and name  H2)',	# d3a
+        ' (resid 433 and resname TIP3 and name  H1)',	# d2
+        ' (resid 433 and resname TIP3 and name  H1)',	# d3
+        ' (resid 433 and resname TIP3 and name  H1)',	# d3a
+    ]
+    atom_j_sel = [
+        ' (resid 433 and resname TIP3 and name OH2)',	# d1
+        ' (resid  69 and resname  SER and name  OG)',	# d1
+        ' (resid 433 and resname TIP3 and name OH2)',	# d2
+        ' (resid 165 and resname  GLU and name OE1)',	# d3
+        ' (resid 165 and resname  GLU and name OE2)',	# d3a
+        ' (resid 433 and resname TIP3 and name OH2)',	# d2
+        ' (resid 165 and resname  GLU and name OE1)',	# d3
+        ' (resid 165 and resname  GLU and name OE2)',	# d3a
+    ]
+    
+    _rxcsel = [0, 1, 2, 3, 4, 5, 6, 7] if pathname == 'r2ae' else [100]
     _distmat = []
     _distlbl = []
     for i in _rxcsel:

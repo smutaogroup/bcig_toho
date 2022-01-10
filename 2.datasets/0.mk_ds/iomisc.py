@@ -7,7 +7,7 @@ import MDAnalysis as mda
 def basedir():
     '''An ugly way to put a global var.
     '''
-    return '../../1.sampling'
+    return '/users/zilins/scratch/2.proj_toho2lig_acy/1.sampling'
 
 def enerdirs(sysname, pathname, theoryname, ):
     '''Build the directories to the energies.
@@ -17,8 +17,8 @@ def enerdirs(sysname, pathname, theoryname, ):
     theoryname: dftb3, b3lyp.
 
     One pathname will return two directories, e.g.:
-    ../../1.sampling/ 0 .toho_amp. r1/9.paths.sp/         0.dftb3   /path.ene
-    ../../1.sampling/ 2 .toho_amp. ae/9a.r1.paths.sp/     0.dftb3   /path.ene
+    /users/zilins/scratch/2.proj_toho2lig_acy/1.sampling/ 0 .toho_amp. r1/9.paths.sp/         0.dftb3   /path.ene
+    /users/zilins/scratch/2.proj_toho2lig_acy/1.sampling/ 2 .toho_amp. ae/9a.r1.paths.sp/     0.dftb3   /path.ene
 
     Will return 2 str: fwdir & bwdir
     '''
@@ -67,9 +67,9 @@ def load_path(sysname, pathname, whichdirection, pathid, ):
     pathid:     	a number from 1-100, 
 
     Conformation directories:
-    ../../1.sampling/3.toho_cex. r1/8.    dftb.paths  /path_opt/toho_cex.path_f52.cor
-    ../../1.sampling/4.toho_cex .r2/8.    dftb.paths  /path_opt/toho_cex.path_f52.psf
-    ../../1.sampling/5.toho_cex. ae/8b.r2.dftb.paths  /path_opt/toho_cex.path_f65.cor
+    /users/zilins/scratch/2.proj_toho2lig_acy/1.sampling/3.toho_cex. r1/8.    dftb.paths  /path_opt/toho_cex.path_f52.cor
+    /users/zilins/scratch/2.proj_toho2lig_acy/1.sampling/4.toho_cex .r2/8.    dftb.paths  /path_opt/toho_cex.path_f52.psf
+    /users/zilins/scratch/2.proj_toho2lig_acy/1.sampling/5.toho_cex. ae/8b.r2.dftb.paths  /path_opt/toho_cex.path_f65.cor
 
     Will return a MDAnalysis.Universe object of the path.
     '''

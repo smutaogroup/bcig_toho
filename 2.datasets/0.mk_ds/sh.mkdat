@@ -1,14 +1,16 @@
 #!/bin/bash
 #SBATCH -J toho_extracting 
-#SBATCH -p standard-mem-s 
+#SBATCH -p standard-mem-l
 #SBATCH -n 8
 #SBATCH --mem=20GB
 #SBATCH --exclude=p001,k001
 
-mkdir -p rawds_hvypw rawds_chembonds rawds_hbonds rawds_hbonds_detectlabels rawds_rxc rawds_ener
+# mkdir -p rawds_hvypw rawds_chembonds rawds_hbonds rawds_hbonds_detectlabels rawds_rxc rawds_ener
 source activate mdanalysis
-python mk_ener.py
-python mk_hbonds.py
-python mk_rxc.py
-python mk_chembonds.py
-python mk_hvypw.py
+
+python mk_tohocex_r2ae_mech_valid.py
+# python mk_ener.py
+# python mk_hbonds.py
+# python mk_rxc.py
+# python mk_chembonds.py
+# python mk_hvypw.py
