@@ -1,0 +1,19 @@
+#!/bin/bash
+#SBATCH -J bcig_cvgtest
+#SBATCH -p high-mem-2 
+#SBATCH --mem=200GB
+#SBATCH --array=0-3
+#SBATCH --hint=nomultithread  # no hyperthreading
+#SBATCH --exclude=b150,p001,k001
+#SBATCH --exclusive
+
+## Anaconda3
+export PATH="/users/zilins/software/anaconda3/condabin:$PATH"
+
+# oneDNN library settings.
+export KMP_BLOCKTIME=0                              # allows threads to transition quickly.
+export KMP_AFFINITY=granularity=fine,compact,0,0    # bind threads to cores.
+
+source activate tensorflow_cpu 
+
+python cvgtest_bcig.py $SLURM_ARRAY_TASK_ID 
