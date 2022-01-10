@@ -1,0 +1,25 @@
+weighted  > 32
+Done:   toho_cex r2ae fg1     42.44592475891113
+Done:   toho_cex r2ae fg2     69.80379867553711
+Done:   toho_cex r2ae fg6     71.2269172668457
+Done:   toho_cex r2ae fg7    213.51356506347656
+Done:   toho_cex r2ae fg5     43.8999080657959
+weighted <= 32
+Done:   toho_cex r2ae fg1      6.276871204376221
+Done:   toho_cex r2ae fg2     11.4346324801445
+Done:   toho_cex r2ae fg6     15.083934307098389
+Done:   toho_cex r2ae fg7     17.790400743484497
+Done:   toho_cex r2ae fg5      6.433436393737793
+
+raw      <= 32
+Done:   toho_cex r2ae fg1   8751.267578125
+Done:   toho_cex r2ae fg2  19863.482421875
+Done:   toho_cex r2ae fg6  20073.658203125
+Done:   toho_cex r2ae fg7  27728.4375
+Done:   toho_cex r2ae fg5   8974.4296875
+raw       > 32
+Done:   toho_cex r2ae fg1  18408.060546875
+Done:   toho_cex r2ae fg2  21521.615234375
+Done:   toho_cex r2ae fg6  16309.0751953125
+Done:   toho_cex r2ae fg7  61731.6171875
+Done:   toho_cex r2ae fg5  20197.49609375
